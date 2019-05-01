@@ -1,0 +1,92 @@
+#
+# WRF/WPS Compilation Configuration
+#
+
+compile_path: '~/compile'
+proxies:
+auto_answer: True
+
+# WRF section
+wrf:
+  # Sources package download URL
+  #sources_url: 'http://www2.mmm.ucar.edu/wrf/src/WRFV4.0.TAR.gz'
+  sources_url: 'https://github.com/wrf-model/WRF/archive/v4.1.tar.gz'
+  #git_repo_url: https://github.com/wrf-model/WRF
+  # Compilation options
+  options:
+    compile_configuration: 33
+    nesting: 1
+
+# WPS section
+wps:
+  # Sources package download URL
+  #sources_url: 'http://www2.mmm.ucar.edu/wrf/src/WPSV4.0.TAR.gz'
+  sources_url: 'https://github.com/wrf-model/WPS/archive/v4.1.tar.gz'
+  #git_repo_url: https://github.com/wrf-model/WPS
+  # Compilation options
+  options:
+    compile_configuration: 1
+
+tests:
+  system_environment:
+    enabled: True
+    sources_url: 'http://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/Fortran_C_tests.tar'
+  lib_compatibity:
+    enabled: True
+    sources_url: 'http://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/Fortran_C_NETCDF_MPI_tests.tar'
+
+libraries:
+  zlib:
+    #ref: http://www.zlib.net/
+    inc_path: '/usr/include'
+    lib_path: '/usr/lib/x86_64-linux-gnu/'
+    apt_package: 'libnetcdf-dev'
+    compile: True
+    sources_url: 'http://www.zlib.net/zlib-1.2.11.tar.gz'
+  libpng:
+    #ref: http://www.libpng.org/pub/png/libpng.html
+    inc_path: '/usr/include'
+    lib_path: '/usr/lib/x86_64-linux-gnu/'
+    apt_package: 'libnetcdf-dev'
+    compile: True
+    #sources_url: 'ftp://ftp-osl.osuosl.org/pub/libpng/src/libpng16/libpng-1.6.34.tar.gz'
+    sources_url: 'https://ayera.dl.sourceforge.net/project/libpng/libpng16/1.6.37/libpng-1.6.37.tar.gz'
+  curl:
+    #ref: https://curl.haxx.se/download.html
+    compile: True
+    sources_url: 'https://curl.haxx.se/download/curl-7.64.1.tar.gz'
+  hdf5:
+    #ref: https://www.hdfgroup.org/downloads/hdf5/source-code/
+    inc_path: '/usr/include'
+    lib_path: '/usr/lib/x86_64-linux-gnu/'
+    apt_package: ''
+    compile: True
+    sources_url: 'https://s3.amazonaws.com/hdf-wordpress-1/wp-content/uploads/manual/HDF5/HDF5_1_10_5/source/hdf5-1.10.5.tar.gz'
+    configure_options: ['--enable-hl']
+  netcdf:
+    #ref: https://www.unidata.ucar.edu/downloads/netcdf/index.jsp
+    #ref: https://github.com/Unidata/netcdf-c/releases
+    inc_path: '/usr/include'
+    lib_path: '/usr/lib/x86_64-linux-gnu/'
+    apt_package: 'libnetcdf-dev'
+    compile: True
+    #sources_url: 'https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-4.6.1.tar.gz'
+    #sources_url: 'https://github.com/Unidata/netcdf-c/archive/v4.6.1.tar.gz'
+    sources_url: 'https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.7.0.tar.gz'
+    configure_options: ['--disable-dap']
+  netcdf-fortran:
+    #ref: https://www.unidata.ucar.edu/downloads/netcdf/index.jsp
+    inc_path: '/usr/include'
+    lib_path: '/usr/lib/x86_64-linux-gnu/'
+    apt_package: 'libnetcdff-dev'
+    compile: True
+    sources_url: 'https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.4.5.tar.gz'
+    prefix: 'netcdf'
+  jasper:
+    #ref: https://www.ece.uvic.ca/~frodo/jasper/
+    inc_path: '/usr/include'
+    lib_path: '/usr/lib/x86_64-linux-gnu/'
+    apt_package: 'libjasper-dev'
+    compile: True
+    sources_url: 'http://www.ece.uvic.ca/~frodo/jasper/software/jasper-2.0.14.tar.gz'
+    cmake: True
